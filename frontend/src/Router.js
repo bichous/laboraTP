@@ -1,15 +1,19 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Home from './components/home/Home';
+import { Switch, Route } from 'react-router-dom';
 import NotFound from './components/404/NotFound.js';
+import Login from './pages/login';
+import Menu from './pages/menu';
+import Navbar from './components/Navbar';
 
 const Router = () => (
-  <BrowserRouter>
+  <>
+    <Navbar />
     <Switch>
-      <Route exact path="/" component={Home} />
+      <Route exact path="/" component={Login} />
+      <Route exact path="/menu" component={Menu} />
       <Route component={NotFound} />
     </Switch>
-  </BrowserRouter>
+  </>
 );
 
 export default Router;
