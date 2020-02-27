@@ -31,7 +31,7 @@ exports.ordersByUser = (req, res) => {
 exports.createOrder = (req, res) => {
   if (req.user) {
     const { _id } = req.user;
-    Order.create({ ...req.body })
+    Order.create({ ...req.body, userId: _id })
       .then(order => res.status(200).json({ order }))
       .catch(err =>
         res.status(500).json({ message: `The order wasn't created` })

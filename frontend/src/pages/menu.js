@@ -46,14 +46,14 @@ function Menu() {
     arr1.map(product => {
       if (arr2.includes(product._id)) {
         newOrder.push(product);
-        setOrder(newOrder);
       }
     });
+    setOrder(newOrder);
   };
 
   // useEffect(() => {
-  //   return settingOrder(inicialOrder, productList);
-  // }, [inicialOrder]);
+  //   settingOrder(inicialProducts, productList);
+  // }, []);
 
   const hanldeClick = e => {
     const {
@@ -79,9 +79,7 @@ function Menu() {
         setProducts(breakfastProducts);
       })
       .catch(err => console.log(err));
-
-    settingOrder(inicialOrder, productList);
-  }, [inicialOrder]);
+  }, []);
 
   if (inicialProducts === undefined) {
     return null;
@@ -131,7 +129,11 @@ function Menu() {
             </Flex>
             <Flex w="35vw" h="80vh" justify="center" alignItems="center">
               <h1>Aqui va la orden</h1>
-              <Button onClick={settingOrder(inicialOrder, productList)}>
+              <Button
+                onClick={() => {
+                  settingOrder(inicialProducts, productList);
+                }}
+              >
                 Order
               </Button>
             </Flex>
