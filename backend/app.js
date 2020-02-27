@@ -11,7 +11,7 @@ const session = require('express-session');
 const passport = require('./config/passport');
 
 mongoose
-  .connect(process.env.DB, { useNewUrlParser: true })
+  .connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(x =>
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   )
@@ -31,17 +31,7 @@ app.use(
   })
 );
 
-// app.use(
-//   session({
-//     resave: false,
-//     saveUninitialized: true,
-//     secret: process.env.SECRET,
-//     cookie: { maxAge: 1000 * 60 * 60 }
-//   })
-// );
-
 app.use(passport.initialize());
-// app.use(passport.session());
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
